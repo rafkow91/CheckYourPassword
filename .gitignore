@@ -1,7 +1,7 @@
 # folders
 .venv
 __pycache__
-*/__pytest__
+.pytest_cache
 
 # files
 notes.py
