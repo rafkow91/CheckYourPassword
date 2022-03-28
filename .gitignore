@@ -1,1 +1,7 @@
+# folders
 .venv
+__pycache__
+*/__pytest__
+
+# files
+notes.py
