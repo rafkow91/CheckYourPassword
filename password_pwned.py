@@ -6,6 +6,14 @@ from abstractive_classes import Validator
 
 
 class PwnedPassword(Validator):
+    """_summary_
+
+    Args:
+        Validator (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     URL_ADDRESS = 'https://api.pwnedpasswords.com/range/'
 
     def __init__(self, password: str = None) -> None:
