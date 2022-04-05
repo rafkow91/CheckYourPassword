@@ -1,6 +1,6 @@
+"""Checking if password was leaked"""
 from hashlib import sha1
 from requests import get
-from json import loads
 
 from abstractive_classes import Validator
 
@@ -30,15 +30,16 @@ class PwnedPassword(Validator):
         with get(url) as content:
             content = content.text.split('\r\n')
         control_data = [line.split(':') for line in content]
-        self.control_data = dict()
+        self.control_data = {}
         for item in control_data:
             self.control_data[item[0]] = int(item[1])
 
     def count_leaks(self) -> int:
+        """Count how many password leaks"""
         try:
             return int(self.control_data.get(self.hashed_pass[5:].upper(), 0))
         except AttributeError:
             return None
 
-    def validate(self, usages: int = 0) -> bool:
-        return self.count_leaks() <= usages if self.control_data != None else None
+    def validate(self) -> bool:
+        return self.count_leaks() <= 0 if self.control_data is not None else None
